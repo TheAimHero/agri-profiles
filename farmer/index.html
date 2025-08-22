@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Profile Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="farmer-info">
+                    <img src="./public/farmer.jpg" alt="Farmer" class="farmer-avatar">
+                    <div class="farmer-details">
+                        <h1>Rajesh Kumar Patel</h1>
+                        <p><i class="fas fa-map-marker-alt"></i> Village: Devpura, District: Baroda, Gujarat</p>
+                        <p><i class="fas fa-phone"></i> +91 98765 43210 | <i class="fas fa-envelope"></i> rajesh.patel@email.com</p>
+                    </div>
+                </div>
+                <div class="header-stats">
+                    <div class="stat-card">
+                        <i class="fas fa-map"></i>
+                        <div>
+                            <h3>Total Land</h3>
+                            <p>45.5 Acres</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-seedling"></i>
+                        <div>
+                            <h3>Active Crops</h3>
+                            <p>3 Types</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-tractor"></i>
+                        <div>
+                            <h3>Machinery</h3>
+                            <p>8 Items</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Dashboard -->
+        <main class="dashboard">
+            <!-- Land Distribution Map Section -->
+            <section class="section land-section">
+                <h2><i class="fas fa-map-marked-alt"></i> Land Distribution</h2>
+                <div class="land-content">
+                    <div class="map-container">
+                        <div id="landMap"></div>
+                        <div class="map-legend">
+                            <h4>Land Types:</h4>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #4CAF50;"></span>
+                                <span>Agricultural Land (35.5 acres)</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #8BC34A;"></span>
+                                <span>Orchard (5 acres)</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #CDDC39;"></span>
+                                <span>Pasture (3 acres)</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #FF9800;"></span>
+                                <span>Residential (2 acres)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="land-details">
+                        <div class="land-card">
+                            <h4>Current Crops</h4>
+                            <ul>
+                                <li><strong>Wheat:</strong> 15 acres (Harvest: March 2024)</li>
+                                <li><strong>Cotton:</strong> 12 acres (Harvest: October 2024)</li>
+                                <li><strong>Sugarcane:</strong> 8.5 acres (Harvest: December 2024)</li>
+                            </ul>
+                        </div>
+                        <div class="land-card">
+                            <h4>Soil Health</h4>
+                            <div class="soil-info">
+                                <div class="soil-item">
+                                    <span>pH Level:</span>
+                                    <span class="good">6.8 (Good)</span>
+                                </div>
+                                <div class="soil-item">
+                                    <span>Nitrogen:</span>
+                                    <span class="moderate">Medium</span>
+                                </div>
+                                <div class="soil-item">
+                                    <span>Organic Matter:</span>
+                                    <span class="good">2.1%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Green Bank Section -->
+            <section class="section green-bank-section">
+                <h2><i class="fas fa-warehouse"></i> Green Bank (Storage Facilities)</h2>
+                <div class="green-bank-grid">
+                    <div class="storage-card">
+                        <div class="storage-header">
+                            <i class="fas fa-home"></i>
+                            <h3>Farmer's House</h3>
+                            <span class="storage-type">Private</span>
+                        </div>
+                        <div class="storage-content">
+                            <div class="product-item">
+                                <span class="product-name">Wheat</span>
+                                <span class="quantity">2.5 tons</span>
+                                <span class="storage-date">Stored: Jan 15, 2024</span>
+                            </div>
+                            <div class="product-item">
+                                <span class="product-name">Pulses</span>
+                                <span class="quantity">500 kg</span>
+                                <span class="storage-date">Stored: Feb 10, 2024</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="storage-card">
+                        <div class="storage-header">
+                            <i class="fas fa-warehouse"></i>
+                            <h3>Farm Warehouse</h3>
+                            <span class="storage-type">Owned</span>
+                        </div>
+                        <div class="storage-content">
+                            <div class="product-item">
+                                <span class="product-name">Cotton</span>
+                                <span class="quantity">5 tons</span>
+                                <span class="storage-date">Stored: Nov 20, 2023</span>
+                            </div>
+                            <div class="product-item">
+                                <span class="product-name">Sugarcane</span>
+                                <span class="quantity">15 tons</span>
+                                <span class="storage-date">Stored: Dec 5, 2023</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="storage-card">
+                        <div class="storage-header">
+                            <i class="fas fa-building"></i>
+                            <h3>Government Warehouse</h3>
+                            <span class="storage-type">Rented</span>
+                        </div>
+                        <div class="storage-content">
+                            <div class="product-item">
+                                <span class="product-name">Rice</span>
+                                <span class="quantity">8 tons</span>
+                                <span class="storage-date">Stored: Jan 5, 2024</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tools and Machinery Section -->
+            <section class="section machinery-section">
+                <h2><i class="fas fa-tractor"></i> Tools & Machinery</h2>
+                <div class="machinery-grid">
+                    <div class="machinery-card">
+                        <div class="machinery-icon">
+                            <i class="fas fa-tractor"></i>
+                        </div>
+                        <h3>Mahindra 475 DI</h3>
+                        <p><strong>Year:</strong> 2018</p>
+                        <p><strong>HP:</strong> 47</p>
+                        <p><strong>Status:</strong> <span class="status-active">Active</span></p>
+                        <p><strong>Last Service:</strong> Dec 2023</p>
+                    </div>
+
+                    <div class="machinery-card">
+                        <div class="machinery-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h3>Harvester</h3>
+                        <p><strong>Brand:</strong> John Deere</p>
+                        <p><strong>Year:</strong> 2020</p>
+                        <p><strong>Status:</strong> <span class="status-active">Active</span></p>
+                        <p><strong>Last Service:</strong> Jan 2024</p>
+                    </div>
+
+                    <div class="machinery-card">
+                        <div class="machinery-icon">
+                            <i class="fas fa-tint"></i>
+                        </div>
+                        <h3>Sprinkler System</h3>
+                        <p><strong>Type:</strong> Drip Irrigation</p>
+                        <p><strong>Coverage:</strong> 25 acres</p>
+                        <p><strong>Status:</strong> <span class="status-active">Active</span></p>
+                    </div>
+
+                    <div class="machinery-card">
+                        <div class="machinery-icon">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <h3>Seed Drill</h3>
+                        <p><strong>Brand:</strong> Khedut</p>
+                        <p><strong>Year:</strong> 2019</p>
+                        <p><strong>Status:</strong> <span class="status-maintenance">Maintenance</span></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Water Sources Section -->
+            <section class="section water-section">
+                <h2><i class="fas fa-water"></i> Water Sources</h2>
+                <div class="water-grid">
+                    <div class="water-card">
+                        <div class="water-icon">
+                            <i class="fas fa-water"></i>
+                        </div>
+                        <h3>Borewell</h3>
+                        <p><strong>Depth:</strong> 150 feet</p>
+                        <p><strong>Capacity:</strong> 5000 LPH</p>
+                        <p><strong>Ownership:</strong> <span class="ownership-private">Private</span></p>
+                        <p><strong>Last Test:</strong> March 2024</p>
+                    </div>
+
+                    <div class="water-card">
+                        <div class="water-icon">
+                            <i class="fas fa-swimming-pool"></i>
+                        </div>
+                        <h3>Artificial Lake</h3>
+                        <p><strong>Capacity:</strong> 2 lakh liters</p>
+                        <p><strong>Area:</strong> 1.5 acres</p>
+                        <p><strong>Ownership:</strong> <span class="ownership-private">Private</span></p>
+                        <p><strong>Last Cleaned:</strong> Jan 2024</p>
+                    </div>
+
+                    <div class="water-card">
+                        <div class="water-icon">
+                            <i class="fas fa-hand-holding-water"></i>
+                        </div>
+                        <h3>Community Well</h3>
+                        <p><strong>Depth:</strong> 80 feet</p>
+                        <p><strong>Access:</strong> Shared</p>
+                        <p><strong>Ownership:</strong> <span class="ownership-community">Community</span></p>
+                        <p><strong>Maintenance:</strong> Monthly</p>
+                    </div>
+
+                    <div class="water-card">
+                        <div class="water-icon">
+                            <i class="fas fa-tint"></i>
+                        </div>
+                        <h3>Canal Water</h3>
+                        <p><strong>Source:</strong> Narmada Canal</p>
+                        <p><strong>Access:</strong> Seasonal</p>
+                        <p><strong>Ownership:</strong> <span class="ownership-government">Government</span></p>
+                        <p><strong>Availability:</strong> June-October</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Livestock Section -->
+            <section class="section livestock-section">
+                <h2><i class="fas fa-cow"></i> Livestock</h2>
+                <div class="livestock-grid">
+                    <div class="livestock-card">
+                        <div class="livestock-icon">
+                            <i class="fas fa-cow"></i>
+                        </div>
+                        <h3>Dairy Cattle</h3>
+                        <p><strong>Count:</strong> 12</p>
+                        <p><strong>Breed:</strong> Gir, Sahiwal</p>
+                        <p><strong>Milk Production:</strong> 45L/day</p>
+                        <p><strong>Health Status:</strong> <span class="status-good">Good</span></p>
+                    </div>
+
+                    <div class="livestock-card">
+                        <div class="livestock-icon">
+                            <i class="fas fa-kiwi-bird"></i>
+                        </div>
+                        <h3>Poultry</h3>
+                        <p><strong>Count:</strong> 200</p>
+                        <p><strong>Type:</strong> Layer Hens</p>
+                        <p><strong>Egg Production:</strong> 180/day</p>
+                        <p><strong>Health Status:</strong> <span class="status-good">Good</span></p>
+                    </div>
+
+                    <div class="livestock-card">
+                        <div class="livestock-icon">
+                            <i class="fas fa-horse"></i>
+                        </div>
+                        <h3>Goats</h3>
+                        <p><strong>Count:</strong> 25</p>
+                        <p><strong>Breed:</strong> Sirohi</p>
+                        <p><strong>Purpose:</strong> Meat & Milk</p>
+                        <p><strong>Health Status:</strong> <span class="status-good">Good</span></p>
+                    </div>
+
+                    <div class="livestock-card">
+                        <div class="livestock-icon">
+                            <i class="fas fa-bug"></i>
+                        </div>
+                        <h3>Fish Farming</h3>
+                        <p><strong>Pond Area:</strong> 2 acres</p>
+                        <p><strong>Species:</strong> Rohu, Catla</p>
+                        <p><strong>Stock:</strong> 5000 fish</p>
+                        <p><strong>Status:</strong> <span class="status-active">Active</span></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Allied Businesses Section -->
+            <section class="section business-section">
+                <h2><i class="fas fa-business-time"></i> Allied Businesses</h2>
+                <div class="business-grid">
+                    <div class="business-card">
+                        <div class="business-icon">
+                            <i class="fas fa-milk"></i>
+                        </div>
+                        <h3>Dairy Farm</h3>
+                        <p><strong>Production:</strong> 45L/day</p>
+                        <p><strong>Customers:</strong> 50+ households</p>
+                        <!-- <p><strong>Revenue:</strong> ₹15,000/month</p> -->
+                        <p><strong>Status:</strong> <span class="status-active">Active</span></p>
+                    </div>
+
+                    <div class="business-card">
+                        <div class="business-icon">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <h3>Organic Fertilizers</h3>
+                        <p><strong>Production:</strong> 2 tons/month</p>
+                        <p><strong>Customers:</strong> Local farmers</p>
+                        <!-- <p><strong>Revenue:</strong> ₹8,000/month</p> -->
+                        <p><strong>Status:</strong> <span class="status-active">Active</span></p>
+                    </div>
+
+                    <div class="business-card">
+                        <div class="business-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h3>Machinery Rental</h3>
+                        <p><strong>Services:</strong> Tractor, Harvester</p>
+                        <p><strong>Customers:</strong> 15+ farmers</p>
+                        <!-- <p><strong>Revenue:</strong> ₹12,000/month</p> -->
+                        <p><strong>Status:</strong> <span class="status-active">Active</span></p>
+                    </div>
+
+                    <div class="business-card">
+                        <div class="business-icon">
+                            <i class="fas fa-store"></i>
+                        </div>
+                        <h3>Agri Input Store</h3>
+                        <p><strong>Products:</strong> Seeds, Pesticides</p>
+                        <p><strong>Customers:</strong> 100+ farmers</p>
+                        <!-- <p><strong>Revenue:</strong> ₹25,000/month</p> -->
+                        <p><strong>Status:</strong> <span class="status-active">Active</span></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Vehicles Section -->
+            <section class="section vehicles-section">
+                <h2><i class="fas fa-car"></i> Vehicles</h2>
+                <div class="vehicles-grid">
+                    <div class="vehicle-card">
+                        <div class="vehicle-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <h3>Mahindra Bolero Pickup</h3>
+                        <p><strong>Year:</strong> 2019</p>
+                        <p><strong>Capacity:</strong> 1.5 tons</p>
+                        <p><strong>Purpose:</strong> Transport</p>
+                        <p><strong>Status:</strong> <span class="status-active">Active</span></p>
+                    </div>
+
+                    <div class="vehicle-card">
+                        <div class="vehicle-icon">
+                            <i class="fas fa-motorcycle"></i>
+                        </div>
+                        <h3>Hero Splendor</h3>
+                        <p><strong>Year:</strong> 2020</p>
+                        <p><strong>Mileage:</strong> 65 kmpl</p>
+                        <p><strong>Purpose:</strong> Personal</p>
+                        <p><strong>Status:</strong> <span class="status-active">Active</span></p>
+                    </div>
+
+                    <div class="vehicle-card">
+                        <div class="vehicle-icon">
+                            <i class="fas fa-truck-moving"></i>
+                        </div>
+                        <h3>Tata 407 Truck</h3>
+                        <p><strong>Year:</strong> 2018</p>
+                        <p><strong>Capacity:</strong> 4 tons</p>
+                        <p><strong>Purpose:</strong> Commercial</p>
+                        <p><strong>Status:</strong> <span class="status-maintenance">Maintenance</span></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Agro-Tourism Section -->
+            <section class="section tourism-section">
+                <h2><i class="fas fa-hotel"></i> Agro-Tourism</h2>
+                <div class="tourism-content">
+                    <div class="tourism-info">
+                        <div class="tourism-card">
+                            <h3>Accommodation Facilities</h3>
+                            <ul>
+                                <li><strong>Farm Stay:</strong> 2 rooms</li>
+                                <li><strong>Camping:</strong> 5 tents</li>
+                                <li><strong>Capacity:</strong> 15 guests</li>
+                                <li><strong>Season:</strong> October-March</li>
+                            </ul>
+                        </div>
+                        <div class="tourism-card">
+                            <h3>Activities Offered</h3>
+                            <ul>
+                                <li>Farm tours & crop harvesting</li>
+                                <li>Dairy farm experience</li>
+                                <li>Organic cooking classes</li>
+                                <li>Bird watching & nature trails</li>
+                                <li>Traditional farming methods</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tourism-stats">
+                        <div class="stat-item">
+                            <h4>Monthly Visitors</h4>
+                            <p>45</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>Rating</h4>
+                            <p>4.5/5 ⭐</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Live Mandi Section -->
+            <section class="section mandi-section">
+                <h2><i class="fas fa-chart-line"></i> Live Mandi Updates</h2>
+                <div class="mandi-content">
+                    <div class="mandi-live">
+                        <div class="live-indicator">
+                            <span class="pulse"></span>
+                            <span>LIVE</span>
+                       </div>
+                        <h3>Current Market Prices</h3>
+                        <div class="price-grid">
+                            <div class="price-card">
+                                <h4>Wheat</h4>
+                                <p class="price">₹2,150/quintal</p>
+                                <p class="trend up">↗ +₹50</p>
+                                <p class="location">Baroda Mandi</p>
+                            </div>
+                            <div class="price-card">
+                                <h4>Cotton</h4>
+                                <p class="price">₹6,800/quintal</p>
+                                <p class="trend down">↘ -₹120</p>
+                                <p class="location">Ahmedabad Mandi</p>
+                            </div>
+                            <div class="price-card">
+                                <h4>Sugarcane</h4>
+                                <p class="price">₹315/quintal</p>
+                                <p class="trend stable">→ Stable</p>
+                                <p class="location">Surat Mandi</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="harvest-schedule">
+                        <h3>Upcoming Harvest (Next 5 Days)</h3>
+                        <div class="harvest-timeline">
+                            <div class="harvest-item">
+                                <div class="harvest-date">Day 1</div>
+                                <div class="harvest-details">
+                                    <h4>Wheat - Field A</h4>
+                                    <p>Expected yield: 15 quintals</p>
+                                </div>
+                            </div>
+                            <div class="harvest-item">
+                                <div class="harvest-date">Day 3</div>
+                                <div class="harvest-details">
+                                    <h4>Wheat - Field B</h4>
+                                    <p>Expected yield: 12 quintals</p>
+                                </div>
+                            </div>
+                            <div class="harvest-item">
+                                <div class="harvest-date">Day 5</div>
+                                <div class="harvest-details">
+                                    <h4>Wheat - Field C</h4>
+                                    <p>Expected yield: 18 quintals</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Financial & Insurance Section -->
+            <section class="section financial-section">
+                <h2><i class="fas fa-shield-alt"></i> Insurance & Financial</h2>
+                <div class="financial-grid">
+                    <div class="financial-card">
+                        <h3>Insurance Coverage</h3>
+                        <div class="insurance-item">
+                            <span>Crop Insurance (PMFBY)</span>
+                            <span class="status-active">Active</span>
+                        </div>
+                        <div class="insurance-item">
+                            <span>Livestock Insurance</span>
+                            <span class="status-active">Active</span>
+                        </div>
+                        <div class="insurance-item">
+                            <span>Machinery Insurance</span>
+                            <span class="status-active">Active</span>
+                        </div>
+                        <div class="insurance-item">
+                            <span>Health Insurance</span>
+                            <span class="status-active">Active</span>
+                        </div>
+                    </div>
+
+                    <div class="financial-card">
+                        <h3>Subsidies & Schemes</h3>
+                        <div class="subsidy-item">
+                            <span>PM-KISAN</span>
+                            <span class="amount">₹6,000/year</span>
+                        </div>
+                        <div class="subsidy-item">
+                            <span>Fertilizer Subsidy</span>
+                            <span class="amount">₹8,500/year</span>
+                        </div>
+                        <div class="subsidy-item">
+                            <span>Drip Irrigation</span>
+                            <span class="amount">₹25,000 (one-time)</span>
+                        </div>
+                        <div class="subsidy-item">
+                            <span>Solar Pump</span>
+                            <span class="amount">₹50,000 (one-time)</span>
+                        </div>
+                    </div>
+
+                    <div class="financial-card">
+                        <h3>Bank Account Details</h3>
+                        <div class="bank-info">
+                            <p><strong>Bank:</strong> State Bank of India</p>
+                            <p><strong>Account:</strong> 1234567890</p>
+                            <p><strong>IFSC:</strong> SBIN0001234</p>
+                            <p><strong>Balance:</strong> ₹2,45,000</p>
+                        </div>
+                    </div>
+
+                    <div class="financial-card">
+                        <h3>Cold Storage</h3>
+                        <div class="storage-info">
+                            <p><strong>Facility:</strong> Baroda Cold Storage</p>
+                            <p><strong>Capacity:</strong> 10 tons</p>
+                            <p><strong>Rate:</strong> ₹50/ton/month</p>
+                            <p><strong>Status:</strong> <span class="status-active">Available</span></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Environmental Section -->
+            <section class="section environmental-section">
+                <h2><i class="fas fa-tree"></i> Environmental Initiatives</h2>
+                <div class="environmental-content">
+                    <div class="tree-planting">
+                        <h3>Trees Planted Around Land</h3>
+                        <div class="tree-stats">
+                            <div class="tree-item">
+                                <i class="fas fa-tree"></i>
+                                <div>
+                                    <h4>Total Trees</h4>
+                                    <p>1,250</p>
+                                </div>
+                            </div>
+                            <div class="tree-item">
+                                <i class="fas fa-seedling"></i>
+                                <div>
+                                    <h4>This Year</h4>
+                                    <p>150</p>
+                                </div>
+                            </div>
+                            <div class="tree-item">
+                                <i class="fas fa-leaf"></i>
+                                <div>
+                                    <h4>Species</h4>
+                                    <p>25 types</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tree-species">
+                            <h4>Major Species:</h4>
+                            <div class="species-tags">
+                                <span class="species-tag">Neem (200)</span>
+                                <span class="species-tag">Mango (150)</span>
+                                <span class="species-tag">Bamboo (100)</span>
+                                <span class="species-tag">Peepal (80)</span>
+                                <span class="species-tag">Banyan (50)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sustainability">
+                        <h3>Sustainability Practices</h3>
+                        <ul>
+                            <li>✅ Organic farming on 60% land</li>
+                            <li>✅ Rainwater harvesting</li>
+                            <li>✅ Solar power for irrigation</li>
+                            <li>✅ Compost from farm waste</li>
+                            <li>✅ Crop rotation practices</li>
+                            <li>✅ Natural pest control</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
