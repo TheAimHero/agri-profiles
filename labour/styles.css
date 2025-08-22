@@ -1,0 +1,947 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #333;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header Styles */
+.header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.farmer-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.farmer-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: fill;
+    border: 4px solid #4CAF50;
+}
+
+.farmer-details h1 {
+    color: #2c3e50;
+    margin-bottom: 5px;
+    font-size: 28px;
+}
+
+.farmer-details p {
+    color: #7f8c8d;
+    margin-bottom: 3px;
+    font-size: 14px;
+}
+
+.header-stats {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.stat-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 15px;
+    min-width: 150px;
+}
+
+.stat-card i {
+    font-size: 24px;
+}
+
+.stat-card h3 {
+    font-size: 12px;
+    opacity: 0.9;
+    margin-bottom: 2px;
+}
+
+.stat-card p {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Section Styles */
+.section {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.section h2 {
+    color: #2c3e50;
+    margin-bottom: 25px;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.section h2 i {
+    color: #4CAF50;
+}
+
+/* Land Section Styles */
+.land-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.land-details {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.land-card {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    padding: 20px;
+    border-radius: 15px;
+    border-left: 4px solid #4CAF50;
+    flex: 1;
+}
+
+.land-card h4 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.land-card ul {
+    list-style: none;
+}
+
+.land-card li {
+    margin-bottom: 8px;
+    padding-left: 20px;
+    position: relative;
+    font-size: 14px;
+}
+
+.land-card li:before {
+    content: "•";
+    color: #4CAF50;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+.soil-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.soil-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.soil-item:last-child {
+    border-bottom: none;
+}
+
+.good {
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+.moderate {
+    color: #FF9800;
+    font-weight: bold;
+}
+
+/* Green Bank Section Styles */
+.green-bank-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.storage-card {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.storage-card:hover {
+    transform: translateY(-5px);
+}
+
+.storage-header {
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.storage-header i {
+    font-size: 24px;
+}
+
+.storage-header h3 {
+    font-size: 18px;
+    margin: 0;
+}
+
+.storage-type {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    margin-left: auto;
+}
+
+.storage-content {
+    padding: 20px;
+}
+
+.product-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.product-item:last-child {
+    border-bottom: none;
+}
+
+.product-name {
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.quantity {
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+.storage-date {
+    color: #7f8c8d;
+    font-size: 12px;
+}
+
+/* Machinery Section Styles */
+.machinery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.machinery-card {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.machinery-card:hover {
+    transform: translateY(-5px);
+}
+
+.machinery-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+
+.machinery-icon i {
+    font-size: 24px;
+    color: white;
+}
+
+.machinery-card h3 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.machinery-card p {
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.status-active {
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+.status-maintenance {
+    color: #FF9800;
+    font-weight: bold;
+}
+
+/* Water Section Styles */
+.water-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.water-card {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.water-card:hover {
+    transform: translateY(-5px);
+}
+
+.water-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+
+.water-icon i {
+    font-size: 24px;
+    color: white;
+}
+
+.water-card h3 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.water-card p {
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.ownership-private {
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+.ownership-community {
+    color: #2196F3;
+    font-weight: bold;
+}
+
+.ownership-government {
+    color: #FF9800;
+    font-weight: bold;
+}
+
+/* Livestock Section Styles */
+.livestock-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.livestock-card {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.livestock-card:hover {
+    transform: translateY(-5px);
+}
+
+.livestock-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+
+.livestock-icon i {
+    font-size: 24px;
+    color: white;
+}
+
+.livestock-card h3 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.livestock-card p {
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.status-good {
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+/* Business Section Styles */
+.business-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.business-card {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.business-card:hover {
+    transform: translateY(-5px);
+}
+
+.business-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+
+.business-icon i {
+    font-size: 24px;
+    color: white;
+}
+
+.business-card h3 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.business-card p {
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+/* Vehicles Section Styles */
+.vehicles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.vehicle-card {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.vehicle-card:hover {
+    transform: translateY(-5px);
+}
+
+.vehicle-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+
+.vehicle-icon i {
+    font-size: 24px;
+    color: white;
+}
+
+.vehicle-card h3 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.vehicle-card p {
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+/* Tourism Section Styles */
+.tourism-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+}
+
+.tourism-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.tourism-card {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    padding: 20px;
+    border-radius: 15px;
+    border-left: 4px solid #4CAF50;
+}
+
+.tourism-card h3 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.tourism-card ul {
+    list-style: none;
+}
+
+.tourism-card li {
+    margin-bottom: 8px;
+    padding-left: 20px;
+    position: relative;
+    font-size: 14px;
+}
+
+.tourism-card li:before {
+    content: "•";
+    color: #4CAF50;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+.tourism-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.stat-item {
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.stat-item h4 {
+    font-size: 14px;
+    opacity: 0.9;
+    margin-bottom: 5px;
+}
+
+.stat-item p {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Mandi Section Styles */
+.mandi-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+}
+
+.mandi-live {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    padding: 25px;
+    border-radius: 15px;
+    position: relative;
+}
+
+.live-indicator {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #ff4444;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.pulse {
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+.mandi-live h3 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.price-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.price-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.price-card h4 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 5px;
+}
+
+.trend {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.trend.up {
+    color: #4CAF50;
+}
+
+.trend.down {
+    color: #f44336;
+}
+
+.trend.stable {
+    color: #2196F3;
+}
+
+.location {
+    font-size: 12px;
+    color: #7f8c8d;
+}
+
+.harvest-schedule {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    padding: 25px;
+    border-radius: 15px;
+}
+
+.harvest-schedule h3 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.harvest-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.harvest-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.harvest-date {
+    background: #4CAF50;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    min-width: 60px;
+    text-align: center;
+}
+
+.harvest-details h4 {
+    color: #2c3e50;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.harvest-details p {
+    color: #7f8c8d;
+    font-size: 12px;
+}
+
+/* Financial Section Styles */
+.financial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.financial-card {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.financial-card h3 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.insurance-item, .subsidy-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.insurance-item:last-child, .subsidy-item:last-child {
+    border-bottom: none;
+}
+
+.amount {
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+.bank-info p, .storage-info p {
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+/* Environmental Section Styles */
+.environmental-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+}
+
+.tree-planting {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    padding: 25px;
+    border-radius: 15px;
+}
+
+.tree-planting h3 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.tree-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.tree-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.tree-item i {
+    font-size: 24px;
+    color: #4CAF50;
+}
+
+.tree-item h4 {
+    color: #2c3e50;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.tree-item p {
+    font-size: 18px;
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+.tree-species h4 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.species-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.species-tag {
+    background: #4CAF50;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.sustainability {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    padding: 25px;
+    border-radius: 15px;
+}
+
+.sustainability h3 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.sustainability ul {
+    list-style: none;
+}
+
+.sustainability li {
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+    font-size: 14px;
+}
+
+.sustainability li:before {
+    content: "✅";
+    position: absolute;
+    left: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .header-stats {
+        justify-content: center;
+    }
+    
+    .land-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .mandi-content, .tourism-content, .environmental-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .green-bank-grid, .machinery-grid, .water-grid, .livestock-grid, .business-grid, .vehicles-grid, .financial-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .price-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .tree-stats {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .section {
+        padding: 20px;
+    }
+    
+    .stat-card {
+        min-width: 120px;
+        padding: 10px 15px;
+    }
+    
+    .farmer-details h1 {
+        font-size: 24px;
+    }
+} 
