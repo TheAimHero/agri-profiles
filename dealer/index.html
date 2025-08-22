@@ -1,0 +1,1112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dealer Profile Dashboard - Farming Goods</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        color: #333;
+      }
+
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      /* Header Styles */
+      .header {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 30px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .dealer-info {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .dealer-avatar {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid #3498db;
+      }
+
+      .dealer-details h1 {
+        color: #2c3e50;
+        margin-bottom: 5px;
+        font-size: 28px;
+      }
+
+      .dealer-details p {
+        color: #7f8c8d;
+        margin-bottom: 3px;
+        font-size: 14px;
+      }
+
+      .header-stats {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      .stat-card {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        background: linear-gradient(135deg, #3498db, #2980b9);
+        color: white;
+        padding: 15px 20px;
+        border-radius: 15px;
+        min-width: 150px;
+      }
+
+      .stat-card i {
+        font-size: 24px;
+      }
+
+      .stat-card h3 {
+        font-size: 12px;
+        opacity: 0.9;
+        margin-bottom: 2px;
+      }
+
+      .stat-card p {
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      /* Section Styles */
+      .section {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 30px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .section h2 {
+        color: #2c3e50;
+        margin-bottom: 25px;
+        font-size: 24px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .section h2 i {
+        color: #3498db;
+      }
+
+      /* Info Grid */
+      .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin-bottom: 20px;
+      }
+
+      .info-card {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 15px;
+        border-left: 4px solid #3498db;
+      }
+
+      .info-card h3 {
+        color: #2c3e50;
+        margin-bottom: 15px;
+        font-size: 18px;
+      }
+
+      .info-item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        padding: 8px 0;
+        border-bottom: 1px solid #ecf0f1;
+      }
+
+      .info-item:last-child {
+        border-bottom: none;
+      }
+
+      .info-label {
+        font-weight: 600;
+        color: #34495e;
+      }
+
+      .info-value {
+        color: #2c3e50;
+        text-align: right;
+      }
+
+      /* Specialization List */
+      .specialization-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .specialization-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+        margin-bottom: 10px;
+        background: #f8f9fa;
+        border-radius: 10px;
+        border-left: 4px solid #27ae60;
+        transition: transform 0.3s ease;
+      }
+
+      .specialization-item:hover {
+        transform: translateX(5px);
+      }
+
+      .specialization-rank {
+        background: #3498db;
+        color: white;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        margin-right: 15px;
+      }
+
+      .specialization-content {
+        display: flex;
+        align-items: center;
+        flex: 1;
+      }
+
+      .produce-icon {
+        font-size: 24px;
+        margin-right: 15px;
+        color: #27ae60;
+      }
+
+      /* Sales Volume */
+      .produce-sales {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+      }
+
+      .sales-card {
+        background: linear-gradient(135deg, #e8f5e8, #f0f8f0);
+        padding: 20px;
+        border-radius: 15px;
+        text-align: center;
+        border: 2px solid #27ae60;
+        transition: transform 0.3s ease;
+      }
+
+      .sales-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .sales-volume {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #27ae60;
+        margin-bottom: 5px;
+      }
+
+      .sales-label {
+        color: #2c3e50;
+        font-size: 1rem;
+        font-weight: 600;
+      }
+
+      /* Mill Section */
+      .mill-section {
+        color: white;
+        border-radius: 20px;
+        padding: 30px;
+        margin-bottom: 30px;
+      }
+
+      .mill-section h2 {
+        color: white;
+      }
+
+      .mill-section h2::before {
+        content: "🏭";
+        margin-right: 10px;
+      }
+
+      .mill-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin-bottom: 20px;
+      }
+
+      .mill-card {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+      }
+
+      .mill-card h3 {
+        color: white;
+        margin-bottom: 15px;
+        font-size: 18px;
+      }
+
+      .mill-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .mill-stat {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 15px;
+        border-radius: 10px;
+        text-align: center;
+      }
+
+      .mill-stat-number {
+        font-size: 1.8rem;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+
+      .mill-stat-label {
+        font-size: 0.9rem;
+        opacity: 0.9;
+      }
+
+      /* Export Section */
+      .export-section {
+        background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+        color: white;
+        border-radius: 20px;
+        padding: 30px;
+        margin-bottom: 30px;
+      }
+
+      .export-section h2 {
+        color: white;
+      }
+
+      .export-section h2::before {
+        content: "🚢";
+        margin-right: 10px;
+      }
+
+      .country-badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      .country-badge {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 8px 15px;
+        border-radius: 25px;
+        font-size: 0.9rem;
+        backdrop-filter: blur(10px);
+      }
+
+      /* Fleet Section */
+      .fleet-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+      }
+
+      .fleet-card {
+        background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+        padding: 20px;
+        border-radius: 15px;
+        border: 2px solid #ff9800;
+        transition: transform 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .fleet-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .fleet-card:hover .fleet-details {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .fleet-header {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 15px;
+      }
+
+      .fleet-icon {
+        font-size: 28px;
+        color: #ff9800;
+      }
+
+      .fleet-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: #2c3e50;
+      }
+
+      .fleet-details {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(255, 152, 0, 0.95);
+        color: white;
+        padding: 20px;
+        border-radius: 15px;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .fleet-details h4 {
+        margin-bottom: 15px;
+        font-size: 18px;
+      }
+
+      .fleet-details ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .fleet-details li {
+        padding: 5px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .fleet-details li:last-child {
+        border-bottom: none;
+      }
+
+      /* Storage Section */
+      .storage-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+      }
+
+      .storage-card {
+        background: linear-gradient(135deg, #e8f5e8, #f0f8f0);
+        padding: 20px;
+        border-radius: 15px;
+        border: 2px solid #4CAF50;
+      }
+
+      .storage-header {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 15px;
+      }
+
+      .storage-icon {
+        font-size: 24px;
+        color: #4CAF50;
+      }
+
+      .storage-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: #2c3e50;
+      }
+
+      /* Staff Section */
+      .staff-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+      }
+
+      .staff-card {
+        background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+        padding: 20px;
+        border-radius: 15px;
+        border: 2px solid #9c27b0;
+      }
+
+      .staff-header {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 15px;
+      }
+
+      .staff-icon {
+        font-size: 24px;
+        color: #9c27b0;
+      }
+
+      .staff-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: #2c3e50;
+      }
+
+      /* Summary Stats */
+      .summary-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+      }
+
+      .summary-stat {
+        background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+        padding: 20px;
+        border-radius: 15px;
+        text-align: center;
+        border: 2px solid #2196f3;
+      }
+
+      .summary-stat-number {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #2196f3;
+        margin-bottom: 5px;
+      }
+
+      .summary-stat-label {
+        color: #2c3e50;
+        font-weight: 600;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .header-content {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .header-stats {
+          justify-content: center;
+        }
+
+        .info-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .produce-sales {
+          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <header class="header">
+        <div class="header-content">
+          <div class="dealer-info">
+            <img src="../farmer/public/farmer.jpg" alt="Dealer" class="dealer-avatar">
+            <div class="dealer-details">
+              <h1>Rajesh Kumar Patel</h1>
+              <p><i class="fas fa-building"></i> Green Valley Agro Traders Ltd.</p>
+              <p><i class="fas fa-map-marker-alt"></i> Nashik, Maharashtra</p>
+              <p><i class="fas fa-phone"></i> +91 98765 43210 | <i class="fas fa-envelope"></i> info@greenvalleyagro.com</p>
+            </div>
+          </div>
+          <div class="header-stats">
+            <div class="stat-card">
+              <i class="fas fa-truck"></i>
+              <div>
+                <h3>Fleet Size</h3>
+                <p>25 Vehicles</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <i class="fas fa-warehouse"></i>
+              <div>
+                <h3>Storage</h3>
+                <p>10,000 MT</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <i class="fas fa-globe"></i>
+              <div>
+                <h3>Export Countries</h3>
+                <p>5 Countries</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Company Information -->
+      <section class="section">
+        <h2><i class="fas fa-info-circle"></i> Company Information</h2>
+        <div class="info-grid">
+          <div class="info-card">
+            <h3>Basic Details</h3>
+            <div class="info-item">
+              <span class="info-label">Company Name:</span>
+              <span class="info-value">Green Valley Agro Traders Ltd.</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Registration No:</span>
+              <span class="info-value">GVA-2023-001</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Started Business:</span>
+              <span class="info-value">2015</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Business Type:</span>
+              <span class="info-value">Private Limited</span>
+            </div>
+          </div>
+          <div class="info-card">
+            <h3>Contact Information</h3>
+            <div class="info-item">
+              <span class="info-label">Owner:</span>
+              <span class="info-value">Rajesh Kumar Patel</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Phone:</span>
+              <span class="info-value">+91 98765 43210</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Email:</span>
+              <span class="info-value">info@greenvalleyagro.com</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Address:</span>
+              <span class="info-value">Plot 45, Industrial Area, Nashik, Maharashtra</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Operational Areas -->
+      <section class="section">
+        <h2><i class="fas fa-map-marked-alt"></i> Business Areas</h2>
+        <div class="info-grid">
+          <div class="info-card">
+            <h3>International Markets</h3>
+            <div class="info-item">
+              <span class="info-label">Main Countries:</span>
+              <span class="info-value">UAE, Saudi Arabia, UK, USA</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Export Volume:</span>
+              <span class="info-value">5000 MT per year</span>
+            </div>
+          </div>
+          <div class="info-card">
+            <h3>Local Coverage</h3>
+            <div class="info-item">
+              <span class="info-label">States:</span>
+              <span class="info-value">Maharashtra, Gujarat, Madhya Pradesh</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Districts:</span>
+              <span class="info-value">Nashik, Ahmednagar, Pune, Aurangabad</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Produce Specialization -->
+      <section class="section">
+        <h2><i class="fas fa-seedling"></i> Main Products (Ranked by Experience)</h2>
+        <ul class="specialization-list">
+          <li class="specialization-item">
+            <div class="specialization-content">
+              <div class="specialization-rank">1</div>
+              <div class="produce-icon">🍇</div>
+              <div>
+                <strong>Grapes</strong> - Table grapes and wine grapes
+              </div>
+            </div>
+            <div class="info-value">15 years experience</div>
+          </li>
+          <li class="specialization-item">
+            <div class="specialization-content">
+              <div class="specialization-rank">2</div>
+              <div class="produce-icon">🧅</div>
+              <div><strong>Onions</strong> - Red and white varieties</div>
+            </div>
+            <div class="info-value">12 years experience</div>
+          </li>
+          <li class="specialization-item">
+            <div class="specialization-content">
+              <div class="specialization-rank">3</div>
+              <div class="produce-icon">🍎</div>
+              <div><strong>Pomegranates</strong> - Bhagwa and Ganesh varieties</div>
+            </div>
+            <div class="info-value">10 years experience</div>
+          </li>
+          <li class="specialization-item">
+            <div class="specialization-content">
+              <div class="specialization-rank">4</div>
+              <div class="produce-icon">🍅</div>
+              <div><strong>Tomatoes</strong> - Hybrid and organic varieties</div>
+            </div>
+            <div class="info-value">8 years experience</div>
+          </li>
+          <li class="specialization-item">
+            <div class="specialization-content">
+              <div class="specialization-rank">5</div>
+              <div class="produce-icon">🥔</div>
+              <div><strong>Potatoes</strong> - Processing and table varieties</div>
+            </div>
+            <div class="info-value">6 years experience</div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Sales Volume -->
+      <section class="section">
+        <h2><i class="fas fa-chart-bar"></i> Yearly Sales by Product</h2>
+        <div class="produce-sales">
+          <div class="sales-card">
+            <div class="sales-volume">8,500 MT</div>
+            <div class="sales-label">🍇 Grapes</div>
+          </div>
+          <div class="sales-card">
+            <div class="sales-volume">12,000 MT</div>
+            <div class="sales-label">🧅 Onions</div>
+          </div>
+          <div class="sales-card">
+            <div class="sales-volume">3,200 MT</div>
+            <div class="sales-label">🍎 Pomegranates</div>
+          </div>
+          <div class="sales-card">
+            <div class="sales-volume">6,800 MT</div>
+            <div class="sales-label">🍅 Tomatoes</div>
+          </div>
+          <div class="sales-card">
+            <div class="sales-volume">9,500 MT</div>
+            <div class="sales-label">🥔 Potatoes</div>
+          </div>
+          <div class="sales-card">
+            <div class="sales-volume">2,100 MT</div>
+            <div class="sales-label">🌾 Other Products</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Mill Operations -->
+      <section class="mill-section">
+        <h2>Processing Mill</h2>
+        <div class="mill-grid">
+          <div class="mill-card">
+            <h3>Mill Details</h3>
+            <div class="info-item">
+              <span class="info-label">Mill Name:</span>
+              <span class="info-value">Green Valley Processing Mill</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Daily Capacity:</span>
+              <span class="info-value">100 MT</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Working Hours:</span>
+              <span class="info-value">16 hours/day</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Location:</span>
+              <span class="info-value">Nashik Industrial Area</span>
+            </div>
+          </div>
+          <div class="mill-card">
+            <h3>Daily Product Requirements</h3>
+            <div class="info-item">
+              <span class="info-label">Grapes:</span>
+              <span class="info-value">40 MT</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Pomegranates:</span>
+              <span class="info-value">25 MT</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Tomatoes:</span>
+              <span class="info-value">20 MT</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Other Products:</span>
+              <span class="info-value">15 MT</span>
+            </div>
+          </div>
+        </div>
+        <div class="mill-stats">
+          <div class="mill-stat">
+            <div class="mill-stat-number">100 MT</div>
+            <div class="mill-stat-label">Daily Processing</div>
+          </div>
+          <div class="mill-stat">
+            <div class="mill-stat-number">25,000 MT</div>
+            <div class="mill-stat-label">Yearly Processing</div>
+          </div>
+          <div class="mill-stat">
+            <div class="mill-stat-number">4</div>
+            <div class="mill-stat-label">Processing Lines</div>
+          </div>
+          <div class="mill-stat">
+            <div class="mill-stat-number">20</div>
+            <div class="mill-stat-label">Mill Workers</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Export Operations -->
+      <section class="export-section">
+        <h2>Export Business</h2>
+        <div class="mill-grid">
+          <div class="mill-card">
+            <h3>Export Markets</h3>
+            <div class="info-item">
+              <span class="info-label">Main Markets:</span>
+              <span class="info-value">UAE, Saudi Arabia</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Other Markets:</span>
+              <span class="info-value">UK, USA, Netherlands</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Yearly Export:</span>
+              <span class="info-value">5,000 MT</span>
+            </div>
+          </div>
+          <div class="mill-card">
+            <h3>Export Products</h3>
+            <div class="info-item">
+              <span class="info-label">Grapes:</span>
+              <span class="info-value">2,500 MT</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Pomegranates:</span>
+              <span class="info-value">1,200 MT</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Onions:</span>
+              <span class="info-value">800 MT</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Processed Products:</span>
+              <span class="info-value">500 MT</span>
+            </div>
+          </div>
+        </div>
+        <div class="country-badges">
+          <span class="country-badge">🇦🇪 UAE - 40%</span>
+          <span class="country-badge">🇸🇦 Saudi Arabia - 30%</span>
+          <span class="country-badge">🇬🇧 UK - 15%</span>
+          <span class="country-badge">🇺🇸 USA - 10%</span>
+          <span class="country-badge">🇳🇱 Netherlands - 5%</span>
+        </div>
+      </section>
+
+      <!-- Fleet Management -->
+      <section class="section">
+        <h2><i class="fas fa-truck"></i> Vehicle Fleet</h2>
+        <div class="fleet-grid">
+          <div class="fleet-card">
+            <div class="fleet-header">
+              <div class="fleet-icon">❄️</div>
+              <div class="fleet-title">Cold Storage Trucks</div>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Count:</span>
+              <span class="info-value">8 vehicles</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Capacity:</span>
+              <span class="info-value">15-20 MT each</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Temperature:</span>
+              <span class="info-value">2-8°C</span>
+            </div>
+            <div class="fleet-details">
+              <h4>Vehicle Details</h4>
+              <ul>
+                <li>Mahindra Furio 16 - 2 vehicles</li>
+                <li>Tata LPT 1618 - 3 vehicles</li>
+                <li>Ashok Leyland Boss - 2 vehicles</li>
+                <li>Eicher Pro 3016 - 1 vehicle</li>
+                <li>All equipped with refrigeration units</li>
+                <li>GPS tracking system installed</li>
+                <li>Used for grapes and pomegranates</li>
+              </ul>
+            </div>
+          </div>
+          <div class="fleet-card">
+            <div class="fleet-header">
+              <div class="fleet-icon">🚛</div>
+              <div class="fleet-title">Regular Trucks</div>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Count:</span>
+              <span class="info-value">12 vehicles</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Capacity:</span>
+              <span class="info-value">10-15 MT each</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Use:</span>
+              <span class="info-value">Local transport</span>
+            </div>
+            <div class="fleet-details">
+              <h4>Vehicle Details</h4>
+              <ul>
+                <li>Tata 407 - 5 vehicles</li>
+                <li>Mahindra Bolero Pickup - 4 vehicles</li>
+                <li>Ashok Leyland Dost - 3 vehicles</li>
+                <li>Used for onions and potatoes</li>
+                <li>Open body for easy loading</li>
+                <li>Regular maintenance schedule</li>
+                <li>Local delivery routes</li>
+              </ul>
+            </div>
+          </div>
+          <div class="fleet-card">
+            <div class="fleet-header">
+              <div class="fleet-icon">🚚</div>
+              <div class="fleet-title">Small Delivery Vans</div>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Count:</span>
+              <span class="info-value">5 vehicles</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Capacity:</span>
+              <span class="info-value">2-3 MT each</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Use:</span>
+              <span class="info-value">Small deliveries</span>
+            </div>
+            <div class="fleet-details">
+              <h4>Vehicle Details</h4>
+              <ul>
+                <li>Mahindra Supro - 2 vehicles</li>
+                <li>Tata Ace - 2 vehicles</li>
+                <li>Piaggio Ape - 1 vehicle</li>
+                <li>Used for tomatoes and small orders</li>
+                <li>Easy to navigate in cities</li>
+                <li>Fuel efficient</li>
+                <li>Quick delivery service</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Storage Facilities -->
+      <section class="section">
+        <h2><i class="fas fa-warehouse"></i> Storage Facilities</h2>
+        <div class="storage-grid">
+          <div class="storage-card">
+            <div class="storage-header">
+              <div class="storage-icon">🏭</div>
+              <div class="storage-title">Main Warehouse - Nashik</div>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Capacity:</span>
+              <span class="info-value">5,000 MT</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Temperature Control:</span>
+              <span class="info-value">Yes</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Main Products:</span>
+              <span class="info-value">Grapes & Pomegranates</span>
+            </div>
+          </div>
+          <div class="storage-card">
+            <div class="storage-header">
+              <div class="storage-icon">❄️</div>
+              <div class="storage-title">Cold Storage - Ahmednagar</div>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Capacity:</span>
+              <span class="info-value">3,000 MT</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Temperature Control:</span>
+              <span class="info-value">Yes</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Main Products:</span>
+              <span class="info-value">Onions & Potatoes</span>
+            </div>
+          </div>
+          <div class="storage-card">
+            <div class="storage-header">
+              <div class="storage-icon">🏭</div>
+              <div class="storage-title">Processing Unit - Pune</div>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Capacity:</span>
+              <span class="info-value">2,000 MT</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Temperature Control:</span>
+              <span class="info-value">Yes</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Main Products:</span>
+              <span class="info-value">Tomatoes & Processing</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Staff Management -->
+      <section class="section">
+        <h2><i class="fas fa-users"></i> Staff Team</h2>
+        <div class="staff-grid">
+          <div class="staff-card">
+            <div class="staff-header">
+              <div class="staff-icon">👥</div>
+              <div class="staff-title">Management Team</div>
+            </div>
+            <div class="info-item">
+              <span class="info-label">General Manager:</span>
+              <span class="info-value">1 person</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Operations Manager:</span>
+              <span class="info-value">2 persons</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Quality Control:</span>
+              <span class="info-value">3 persons</span>
+            </div>
+          </div>
+          <div class="staff-card">
+            <div class="staff-header">
+              <div class="staff-icon">🚛</div>
+              <div class="staff-title">Transport Team</div>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Drivers:</span>
+              <span class="info-value">25 persons</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Loaders:</span>
+              <span class="info-value">15 persons</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Supervisors:</span>
+              <span class="info-value">5 persons</span>
+            </div>
+          </div>
+          <div class="staff-card">
+            <div class="staff-header">
+              <div class="staff-icon">🏭</div>
+              <div class="staff-title">Production Team</div>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Mill Workers:</span>
+              <span class="info-value">20 persons</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Packaging:</span>
+              <span class="info-value">12 persons</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Maintenance:</span>
+              <span class="info-value">3 persons</span>
+            </div>
+          </div>
+          <div class="staff-card">
+            <div class="staff-header">
+              <div class="staff-icon">📊</div>
+              <div class="staff-title">Support Team</div>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Accountants:</span>
+              <span class="info-value">2 persons</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Sales Team:</span>
+              <span class="info-value">8 persons</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Office Staff:</span>
+              <span class="info-value">5 persons</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Business Summary -->
+      <section class="section">
+        <h2><i class="fas fa-chart-pie"></i> Business Summary</h2>
+        <div class="summary-stats">
+          <div class="summary-stat">
+            <div class="summary-stat-number">42,100 MT</div>
+            <div class="summary-stat-label">Total Yearly Sales</div>
+          </div>
+          <div class="summary-stat">
+            <div class="summary-stat-number">25</div>
+            <div class="summary-stat-label">Total Vehicles</div>
+          </div>
+          <div class="summary-stat">
+            <div class="summary-stat-number">100</div>
+            <div class="summary-stat-label">Total Staff</div>
+          </div>
+          <div class="summary-stat">
+            <div class="summary-stat-number">10,000 MT</div>
+            <div class="summary-stat-label">Storage Capacity</div>
+          </div>
+          <div class="summary-stat">
+            <div class="summary-stat-number">5</div>
+            <div class="summary-stat-label">Export Countries</div>
+          </div>
+          <div class="summary-stat">
+            <div class="summary-stat-number">150</div>
+            <div class="summary-stat-label">Product Types</div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
