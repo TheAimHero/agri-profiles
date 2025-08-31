@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Home - AgriConnect</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet">
+    <link href="home-styles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="user-info">
+                    <img src="../farmer/public/farmer.jpg" alt="Farmer" class="user-avatar">
+                    <div class="user-details">
+                        <h1>Welcome back, Rajesh!</h1>
+                        <p><i class="fas fa-map-marker-alt"></i> Devpura, Baroda, Gujarat</p>
+                        <p><i class="fas fa-clock"></i> <span id="current-time"></span></p>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <button class="notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </button>
+                    <button class="profile-btn">
+                        <i class="fas fa-user"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Educational Articles Carousel -->
+        <section class="section articles-section">
+            <div class="section-header">
+                <h2><i class="fas fa-graduation-cap"></i> Today's Learning</h2>
+                <button class="view-all-btn">View All</button>
+            </div>
+            <div class="articles-carousel">
+                <div class="carousel-container">
+                    <div class="article-card active">
+                        <div class="article-image">
+                            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=400&h=200&fit=crop" alt="Organic Farming">
+                            <div class="article-category">Organic Farming</div>
+                        </div>
+                        <div class="article-content">
+                            <h3>Natural Pest Control Methods</h3>
+                            <p>Learn effective organic pest control techniques using neem, garlic, and other natural ingredients...</p>
+                            <div class="article-meta">
+                                <span><i class="fas fa-clock"></i> 5 min read</span>
+                                <span><i class="fas fa-eye"></i> 2.5k views</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="article-card">
+                        <div class="article-image">
+                            <img src="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=400&h=200&fit=crop" alt="Water Management">
+                            <div class="article-category">Water Management</div>
+                        </div>
+                        <div class="article-content">
+                            <h3>Smart Irrigation Techniques</h3>
+                            <p>Discover modern irrigation methods to conserve water and improve crop yields...</p>
+                            <div class="article-meta">
+                                <span><i class="fas fa-clock"></i> 7 min read</span>
+                                <span><i class="fas fa-eye"></i> 1.8k views</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="article-card">
+                        <div class="article-image">
+                            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=400&h=200&fit=crop" alt="Crop Management">
+                            <div class="article-category">Crop Management</div>
+                        </div>
+                        <div class="article-content">
+                            <h3>Wheat Disease Prevention</h3>
+                            <p>Essential tips to prevent and treat common wheat diseases in your region...</p>
+                            <div class="article-meta">
+                                <span><i class="fas fa-clock"></i> 4 min read</span>
+                                <span><i class="fas fa-eye"></i> 3.2k views</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <button class="carousel-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+                    <div class="carousel-dots">
+                        <span class="dot active"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                    <button class="carousel-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Mandi Updates -->
+        <section class="section mandi-section">
+            <div class="section-header">
+                <h2><i class="fas fa-chart-line"></i> Live Mandi Updates</h2>
+                <div class="live-indicator">
+                    <span class="pulse"></span>
+                    <span>LIVE</span>
+                </div>
+            </div>
+            <div class="mandi-content">
+                <div class="mandi-tabs">
+                    <button class="tab-btn active" data-tab="local">Local (5km)</button>
+                    <button class="tab-btn" data-tab="regional">Regional (25km)</button>
+                    <button class="tab-btn" data-tab="state">State</button>
+                </div>
+                
+                <div class="tab-content active" id="local-tab">
+                    <div class="price-grid">
+                        <div class="price-card">
+                            <div class="price-header">
+                                <h4>Wheat</h4>
+                                <span class="trend up">↗ +₹50</span>
+                            </div>
+                            <p class="price">₹2,150/quintal</p>
+                            <p class="location">Baroda Mandi (2km)</p>
+                            <p class="farmer-count">12 farmers selling</p>
+                        </div>
+                        <div class="price-card">
+                            <div class="price-header">
+                                <h4>Cotton</h4>
+                                <span class="trend down">↘ -₹120</span>
+                            </div>
+                            <p class="price">₹6,800/quintal</p>
+                            <p class="location">Ahmedabad Mandi (4km)</p>
+                            <p class="farmer-count">8 farmers selling</p>
+                        </div>
+                        <div class="price-card">
+                            <div class="price-header">
+                                <h4>Sugarcane</h4>
+                                <span class="trend stable">→ Stable</span>
+                            </div>
+                            <p class="price">₹315/quintal</p>
+                            <p class="location">Surat Mandi (3km)</p>
+                            <p class="farmer-count">15 farmers selling</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nearby Offers & Requirements -->
+        <section class="section offers-section">
+            <div class="section-header">
+                <h2><i class="fas fa-handshake"></i> Nearby Offers & Requirements</h2>
+                <button class="post-btn">Post New</button>
+            </div>
+            <div class="offers-content">
+                <div class="offers-tabs">
+                    <button class="tab-btn active" data-tab="offers">Offers (8)</button>
+                    <button class="tab-btn" data-tab="requirements">Requirements (12)</button>
+                </div>
+                
+                <div class="tab-content active" id="offers-tab">
+                    <div class="offer-card">
+                        <div class="offer-header">
+                            <div class="offer-type">SELLING</div>
+                            <span class="distance">1.2km away</span>
+                        </div>
+                        <h3>Organic Wheat - 5 tons</h3>
+                        <p class="offer-details">High-quality organic wheat, harvested last week. Ready for immediate pickup.</p>
+                        <div class="offer-meta">
+                            <span class="price">₹2,200/quintal</span>
+                            <span class="seller">Ramesh Patel</span>
+                            <span class="time">2 hours ago</span>
+                        </div>
+                        <div class="offer-actions">
+                            <button class="contact-btn">Contact</button>
+                            <button class="save-btn"><i class="fas fa-bookmark"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="offer-card">
+                        <div class="offer-header">
+                            <div class="offer-type">RENTING</div>
+                            <span class="distance">3.5km away</span>
+                        </div>
+                        <h3>Tractor with Driver - Available</h3>
+                        <p class="offer-details">Mahindra 475 DI tractor available for rent. Experienced driver included.</p>
+                        <div class="offer-meta">
+                            <span class="price">₹800/day</span>
+                            <span class="seller">Kishan Singh</span>
+                            <span class="time">4 hours ago</span>
+                        </div>
+                        <div class="offer-actions">
+                            <button class="contact-btn">Contact</button>
+                            <button class="save-btn"><i class="fas fa-bookmark"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="offer-card">
+                        <div class="offer-header">
+                            <div class="offer-type">SELLING</div>
+                            <span class="distance">2.1km away</span>
+                        </div>
+                        <h3>Fresh Vegetables - Mixed Lot</h3>
+                        <p class="offer-details">Tomatoes, onions, potatoes available in bulk. Farm fresh, daily harvest.</p>
+                        <div class="offer-meta">
+                            <span class="price">₹15/kg</span>
+                            <span class="seller">Lakshmi Devi</span>
+                            <span class="time">6 hours ago</span>
+                        </div>
+                        <div class="offer-actions">
+                            <button class="contact-btn">Contact</button>
+                            <button class="save-btn"><i class="fas fa-bookmark"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="requirements-tab">
+                    <div class="offer-card requirement">
+                        <div class="offer-header">
+                            <div class="offer-type">BUYING</div>
+                            <span class="distance">0.8km away</span>
+                        </div>
+                        <h3>Need: Cotton Seeds - 100kg</h3>
+                        <p class="offer-details">Looking for high-quality cotton seeds for next season. Prefer organic variety.</p>
+                        <div class="offer-meta">
+                            <span class="price">₹200/kg</span>
+                            <span class="seller">Mohan Kumar</span>
+                            <span class="time">1 hour ago</span>
+                        </div>
+                        <div class="offer-actions">
+                            <button class="contact-btn">Contact</button>
+                            <button class="save-btn"><i class="fas fa-bookmark"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="offer-card requirement">
+                        <div class="offer-header">
+                            <div class="offer-type">HIRING</div>
+                            <span class="distance">4.2km away</span>
+                        </div>
+                        <h3>Need: Farm Laborers - 5 people</h3>
+                        <p class="offer-details">Require experienced farm laborers for wheat harvesting. 10 days work.</p>
+                        <div class="offer-meta">
+                            <span class="price">₹400/day</span>
+                            <span class="seller">Rajesh Sharma</span>
+                            <span class="time">3 hours ago</span>
+                        </div>
+                        <div class="offer-actions">
+                            <button class="contact-btn">Contact</button>
+                            <button class="save-btn"><i class="fas fa-bookmark"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Weather & Alerts -->
+        <section class="section weather-section">
+            <div class="section-header">
+                <h2><i class="fas fa-cloud-sun"></i> Weather & Alerts</h2>
+                <button class="refresh-btn"><i class="fas fa-sync-alt"></i></button>
+            </div>
+            <div class="weather-content">
+                <div class="weather-card">
+                    <div class="weather-main">
+                        <div class="weather-info">
+                            <h3>Today's Weather</h3>
+                            <div class="temperature">32°C</div>
+                            <p>Partly Cloudy</p>
+                        </div>
+                        <div class="weather-icon">
+                            <i class="fas fa-cloud-sun"></i>
+                        </div>
+                    </div>
+                    <div class="weather-details">
+                        <div class="weather-item">
+                            <span>Humidity</span>
+                            <span>65%</span>
+                        </div>
+                        <div class="weather-item">
+                            <span>Wind</span>
+                            <span>12 km/h</span>
+                        </div>
+                        <div class="weather-item">
+                            <span>Rain Chance</span>
+                            <span>20%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="alerts-container">
+                    <div class="alert-item warning">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <div>
+                            <h4>Weather Alert</h4>
+                            <p>Light rain expected tomorrow. Plan harvesting accordingly.</p>
+                        </div>
+                    </div>
+                    <div class="alert-item info">
+                        <i class="fas fa-info-circle"></i>
+                        <div>
+                            <h4>Government Update</h4>
+                            <p>New subsidy scheme for organic farming announced.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Actions -->
+        <section class="section quick-actions-section">
+            <div class="section-header">
+                <h2><i class="fas fa-bolt"></i> Quick Actions</h2>
+            </div>
+            <div class="quick-actions-grid">
+                <div class="action-card">
+                    <div class="action-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3>Call Expert</h3>
+                    <p>Get farming advice</p>
+                </div>
+                <div class="action-card">
+                    <div class="action-icon">
+                        <i class="fas fa-calendar"></i>
+                    </div>
+                    <h3>Schedule</h3>
+                    <p>Plan activities</p>
+                </div>
+                <div class="action-card">
+                    <div class="action-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3>Calculator</h3>
+                    <p>Cost & profit</p>
+                </div>
+                <div class="action-card">
+                    <div class="action-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Guide</h3>
+                    <p>Farming tips</p>
+                </div>
+                <div class="action-card">
+                    <div class="action-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3>Transport</h3>
+                    <p>Book vehicle</p>
+                </div>
+                <div class="action-card">
+                    <div class="action-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Insurance</h3>
+                    <p>Claim status</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Community Updates -->
+        <section class="section community-section">
+            <div class="section-header">
+                <h2><i class="fas fa-users"></i> Community Updates</h2>
+                <button class="view-all-btn">View All</button>
+            </div>
+            <div class="community-content">
+                <div class="community-card">
+                    <div class="community-header">
+                        <img src="../farmer/public/farmer.jpg" alt="User" class="user-avatar-small">
+                        <div>
+                            <h4>Village Meeting</h4>
+                            <p>Tomorrow at 6 PM - Community Hall</p>
+                        </div>
+                        <span class="time">2 hours ago</span>
+                    </div>
+                    <p class="community-text">Discussion about new irrigation project and crop insurance schemes.</p>
+                    <div class="community-actions">
+                        <button class="attend-btn">I'll Attend</button>
+                        <span class="attendees">15 attending</span>
+                    </div>
+                </div>
+
+                <div class="community-card">
+                    <div class="community-header">
+                        <img src="../farmer/public/farmer.jpg" alt="User" class="user-avatar-small">
+                        <div>
+                            <h4>Training Program</h4>
+                            <p>Organic Farming Workshop</p>
+                        </div>
+                        <span class="time">1 day ago</span>
+                    </div>
+                    <p class="community-text">Free training on organic farming techniques. Limited seats available.</p>
+                    <div class="community-actions">
+                        <button class="register-btn">Register</button>
+                        <span class="seats">8 seats left</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <a href="index.html" class="nav-item active">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="../farmer/index.html" class="nav-item">
+                <i class="fas fa-chart-bar"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-search"></i>
+                <span>Market</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-comments"></i>
+                <span>Chat</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </nav>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="home-script.js"></script>
+</body>
+</html>
